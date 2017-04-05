@@ -1,4 +1,4 @@
-package org.easyb.junit;
+package io.easyb.junit;
 
 import org.junit.runner.Description;
 import org.junit.runner.notification.Failure;

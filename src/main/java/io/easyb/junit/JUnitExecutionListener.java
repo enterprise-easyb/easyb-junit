@@ -1,4 +1,4 @@
-package org.easyb.junit;
+package io.easyb.junit;
 
 import org.easyb.BehaviorStep;
 import org.easyb.domain.Behavior;
@@ -12,8 +12,6 @@ import org.junit.runner.notification.RunNotifier;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.easyb.junit.RunProperties.isEclipse;
-import static org.easyb.junit.RunProperties.isIDEA;
 import static org.easyb.util.BehaviorStepType.*;
 import static org.junit.runner.Description.createSuiteDescription;
 
@@ -90,7 +88,7 @@ public class JUnitExecutionListener extends ExecutionListenerAdaptor {
    }
 
    private void createStepDescription() {
-      if (behaviorStep.getStepType() == SCENARIO && (isEclipse() || isIDEA()) ) {
+      if (behaviorStep.getStepType() == SCENARIO && (RunProperties.isEclipse() || RunProperties.isIDEA()) ) {
          scenarioDescription = createSuiteDescription(getStepDescriptionText());
          behaviorDescription.addChild(scenarioDescription);
          currentDescription = scenarioDescription;
@@ -112,7 +110,7 @@ public class JUnitExecutionListener extends ExecutionListenerAdaptor {
     * fine, and using the counter will mess up the Ant output.
     */
    private String getBehaviorHiddenName() {
-      return isEclipse() ? String.valueOf(counter++) : behaviorDescription.getDisplayName();
+      return RunProperties.isEclipse() ? String.valueOf(counter++) : behaviorDescription.getDisplayName();
    }
 
    private String getStepDescriptionText() {

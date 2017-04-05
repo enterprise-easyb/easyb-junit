@@ -1,4 +1,4 @@
-package org.easyb.junit;
+package io.easyb.junit;
 
 import org.easyb.Configuration;
 import org.easyb.domain.Behavior;
@@ -20,8 +20,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.easyb.BehaviorRunner.getBehaviors;
-import static org.easyb.junit.RunProperties.isEclipse;
-import static org.easyb.junit.RunProperties.isIDEA;
 import static org.junit.runner.Description.createSuiteDescription;
 
 public class EasybJUnitRunner extends Runner {
@@ -48,7 +46,7 @@ public class EasybJUnitRunner extends Runner {
     public Description getDescription() {
         if (description == null) {
             description = createSuiteDescription(suite.description());
-            if (isEclipse() || isIDEA() )
+            if (RunProperties.isEclipse() || RunProperties.isIDEA() )
                 executeBehaviors(runNotifierReplay);
         }
         return description;
@@ -80,7 +78,7 @@ public class EasybJUnitRunner extends Runner {
     }
 
     public void run(RunNotifier notifier) {
-        if (isEclipse() || isIDEA())
+        if (RunProperties.isEclipse() || RunProperties.isIDEA())
             runNotifierReplay.replay(notifier, suite.trackTime());
         else
             executeBehaviors(notifier);

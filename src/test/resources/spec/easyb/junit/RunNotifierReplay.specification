@@ -7,7 +7,7 @@ import org.junit.runner.notification.RunNotifier
 import org.junit.runner.notification.Failure
 
 before 'init notifier', {
-   notifierReplay = new org.easyb.junit.RunNotifierReplay()
+   notifierReplay = new io.easyb.junit.RunNotifierReplay()
    notifier = mock(RunNotifier.class)
 }
 
